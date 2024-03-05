@@ -1,14 +1,20 @@
 {
   
   "name": "lca_capstone_endmoduleproject",
+  "version": "1.0.0",
    "description": "",
    "main": "index.js",
+   "type": "module",
    "scripts": {
-     "start": "nodemon src/app.js --exec  \"npm run lint && node\"",
+     "start": "nodemon index --exec  \"npm run lint && node\"",
+     "dev": "nodemon",
      "lint": "eslint src/**/*.js",
      "test": "echo \"Error: no test specified\" && exit 1",
      "seed": "node ./seed"
    },
+   "keywords": [],
+   "author": "",
+   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
