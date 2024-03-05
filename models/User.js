@@ -1,3 +1,8 @@
+import {
+    Sequelize,
+    DataTypes
+} from 'sequelize';
+
 const User = (sequelize, DataTypes) => {
     const User = sequelize.define('User', {
         id: {
@@ -34,5 +39,7 @@ const User = (sequelize, DataTypes) => {
 };
 
 export {
-    User
+    User,
+    Sequelize,
+    DataTypes
 };

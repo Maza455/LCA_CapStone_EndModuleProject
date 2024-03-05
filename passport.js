@@ -7,11 +7,14 @@ import {
     Strategy as JwtStrategy,
     ExtractJwt
 } from 'passport-jwt';
+import { config } from 'dotenv';
+
+config()
 
 passport.use(
     new JwtStrategy({
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-        secretOrKey: config.authentication.jwtSecret
+        secretOrKey: config.authentication.SECRET_KEY
     }, async function (jwtPayload, done) {
         try {
             const user = await User.findOne({
@@ -29,4 +32,4 @@ passport.use(
     })
 );
 
-export default null;
+export default passport;
