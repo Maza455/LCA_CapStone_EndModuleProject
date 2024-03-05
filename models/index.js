@@ -1,35 +1,48 @@
 import config from "../config/config.js";
+config()
 import {
     Sequelize,
     DataTypes
 } from "sequelize";
+import User from "./User.js";
+import Company from "./Company.js";
+import Showcase from "./ShowCase.js";
+import Category from "./Category.js";
+import SubCategory from "./SubCategory.js";
+import SubSubCategory from "./SubSubCategory.js";
+import OrderItem from "./OrderItem.js";
+import Wishlist from "./Wishlist.js";
+import Product from "./Products.js";
+import Review from "./Review.js";
+import Order from "./Order.js";
 
-const sequelize = new Sequelize(config..database, config.db.user, config.db.password, {
-    dialect: config.db.dialect,
-    host: config.db.host,
-    storage: config.db.storage
+const sequelize = new Sequelize(config.connection.database, config.connection.user, config.connection.password, {
+    dialect: config.connection.dialect,
+    host: config.connection.host,
+    storage: config.connection.storage
 });
 
-const db = {};
-db.User = (sequelize, DataTypes) => require("./User")(sequelize, DataTypes);
-db.Company = (sequelize, DataTypes) => require("./Company")(sequelize, DataTypes);
-db.Showcase = (sequelize, DataTypes) => require("./Showcase")(sequelize, DataTypes);
-db.Category = (sequelize, DataTypes) => require("./Category")(sequelize, DataTypes);
-db.SubCategory = (sequelize, DataTypes) => require("./SubCategory")(sequelize, DataTypes);
-db.SubSubCategory = (sequelize, DataTypes) => require("./SubSubCategory")(sequelize, DataTypes);
-db.OrderItem = (sequelize, DataTypes) => require("./OrderItem")(sequelize, DataTypes);
-db.Wishlist = (sequelize, DataTypes) => require("./Wishlist")(sequelize, DataTypes);
-db.Product = (sequelize, DataTypes) => require("./Product")(sequelize, DataTypes);
-db.Review = (sequelize, DataTypes) => require("./Review")(sequelize, DataTypes);
-db.Order = (sequelize, DataTypes) => require("./Order")(sequelize, DataTypes);
+const db = {
+    User: User(sequelize, DataTypes),
+    Company: Company(sequelize, DataTypes),
+    Showcase: Showcase(sequelize, DataTypes),
+    Category: Category(sequelize, DataTypes),
+    SubCategory: SubCategory(sequelize, DataTypes),
+    SubSubCategory: SubSubCategory(sequelize, DataTypes),
+    OrderItem: OrderItem(sequelize, DataTypes),
+    Wishlist: Wishlist(sequelize, DataTypes),
+    Product: Product(sequelize, DataTypes),
+    Review: Review(sequelize, DataTypes),
+    Order: Order(sequelize, DataTypes)
+};
 
 Object.keys(db).forEach((modelName) => {
     if ('associate' in db[modelName]) {
-        db[modelName].associate(db)
+        db[modelName].associate(db);
     }
 });
+
 export {
     Sequelize,
     sequelize
 };
-export default db;

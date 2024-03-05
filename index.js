@@ -1,9 +1,6 @@
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
-import {
-    sequelize
-} from "./models/index.js";
 
 const app = express();
 app.use(morgan("combined"));
@@ -12,7 +9,7 @@ app.use(express.urlencoded({
     extended: true
 }));
 app.use(cors());
-app.use('./static', express.static('static'));
+app.use('/static', express.static('static'));
 
 import './passport.js';
 import routes from "./routes.js";
@@ -28,9 +25,17 @@ if (process.env.NODE_ENV !== 'production') {
     });
 }
 
-sequelize.sync({
+// Import all models dynamically
+const importModels = async () => {
+    const files = await import('./models/index.js');
+    const {
+        sequelize,
+        models
+    } = files;
+    await sequelize.sync({
         force: false
-    })
-    .then(() => {
-        app.listen(config.port, () => console.log(`Express server running on port ${config.port}`));
     });
+    app.listen(config.port, () => console.log(`Express server running on port ${config.port}`));
+};
+
+importModels();
