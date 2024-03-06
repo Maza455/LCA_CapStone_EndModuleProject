@@ -1,6 +1,10 @@
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
+import {
+    errorHandling
+} from "./middleware/errorHandling.js";
+import config from "./config/config.js"; // Assuming you have a configuration file
 
 const app = express();
 app.use(morgan("combined"));
@@ -8,6 +12,8 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
+
+app.use(errorHandling);
 app.use(cors());
 app.use('/static', express.static('static'));
 
