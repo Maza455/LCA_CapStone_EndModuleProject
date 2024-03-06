@@ -8,7 +8,7 @@ const connection = createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_UserName,
     password: process.env.DB_UserPass,
-    port: process.env.DB_Port,
+    port: process.env.DB_PORT,
     dialect: process.env.DB_DIALECT,
     multipleStatements: true,
     connectionLimit: 30
@@ -18,4 +18,4 @@ const authentication = {
     jwtSecret: process.env.SECRET_KEY
 };
 
-export { connection, authentication };
+export default { connection, authentication };
