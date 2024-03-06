@@ -1,19 +1,21 @@
-import {
-    createPool
-} from "mysql";
+import { createPool } from "mysql";
 import dotenv from "dotenv";
+
 dotenv.config();
 
-let connection = createPool({
+const connection = createPool({
     database: process.env.DB_Name,
     host: process.env.DB_HOST,
     user: process.env.DB_UserName,
     password: process.env.DB_UserPass,
+    port: process.env.DB_Port,
     dialect: process.env.DB_DIALECT,
     multipleStatements: true,
     connectionLimit: 30
-})
+});
 
-export default {
-    connection
+const authentication = {
+    jwtSecret: process.env.SECRET_KEY
 };
+
+export { connection, authentication };

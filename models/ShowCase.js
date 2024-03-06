@@ -2,6 +2,7 @@ import {
     Sequelize,
     DataTypes
 } from "sequelize";
+import Review from "./Review.js";
 
 const Showcase = (sequelize, DataTypes) => {
     const Showcase = sequelize.define('Showcase', {
@@ -30,3 +31,5 @@ export {
     Sequelize,
     DataTypes
 }
+
+export default Review;

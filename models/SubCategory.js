@@ -26,3 +26,5 @@ export {
     Sequelize,
     DataTypes
 }
+
+export default SubCategory;

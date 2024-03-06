@@ -1,5 +1,4 @@
 import config from "../config/config.js";
-config()
 import {
     Sequelize,
     DataTypes
@@ -17,7 +16,7 @@ import Review from "./Review.js";
 import Order from "./Order.js";
 
 const sequelize = new Sequelize(config.connection.database, config.connection.user, config.connection.password, {
-    dialect: config.connection.dialect,
+    dialect: 'mysql',
     host: config.connection.host,
     storage: config.connection.storage
 });
@@ -37,12 +36,13 @@ const db = {
 };
 
 Object.keys(db).forEach((modelName) => {
-    if ('associate' in db[modelName]) {
+    if (db[modelName].associate) {
         db[modelName].associate(db);
     }
 });
 
 export {
     Sequelize,
-    sequelize
+    sequelize,
+    db
 };

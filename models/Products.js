@@ -46,3 +46,5 @@ export {
     Sequelize,
     DataTypes
 }
+
+export default Product;

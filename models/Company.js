@@ -29,3 +29,5 @@ export {
     Sequelize,
     DataTypes
 };
+
+export default Company;

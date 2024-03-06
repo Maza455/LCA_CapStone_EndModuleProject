@@ -31,3 +31,5 @@ export {
     Sequelize,
     DataTypes
 }
+
+export default Order;
