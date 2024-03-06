@@ -27,3 +27,5 @@ export {
     Sequelize,
    DataTypes 
 }
+
+export default OrderItem;

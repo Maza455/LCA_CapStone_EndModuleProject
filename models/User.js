@@ -43,3 +43,5 @@ export {
     Sequelize,
     DataTypes
 };
+
+export default User;

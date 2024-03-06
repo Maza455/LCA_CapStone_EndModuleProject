@@ -23,3 +23,5 @@ export {
     Sequelize,
     DataTypes
 };
+
+export default Category;

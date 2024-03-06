@@ -15,8 +15,6 @@ import './passport.js';
 import routes from "./routes.js";
 routes(app);
 
-console.log("server started");
-
 if (process.env.NODE_ENV !== 'production') {
     import('dotenv').then((dotenv) => {
         dotenv.config({
@@ -37,5 +35,7 @@ const importModels = async () => {
     });
     app.listen(config.port, () => console.log(`Express server running on port ${config.port}`));
 };
+
+console.log("server started-Zukisa");
 
 importModels();
